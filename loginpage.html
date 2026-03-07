@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Careersfit — Login</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* { box-sizing: border-box; }
+body, html { margin: 0; padding: 0; height: 100%; font-family: Inter, sans-serif; }
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url(https://img.freepik.com/free-vector/background-realistic-abstract-technology-particle_23-2148431735.jpg?semt=ais_hybrid&w=740&q=80);
+  background-size: cover;
+}
+
+.login-container {
+  background: rgba(11,18,32,0.9);
+  padding: 40px 30px;
+  border-radius: 18px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  color: #e7eeff;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  color: #6ea8fe;
+}
+
+.form-group { margin-bottom: 20px; position: relative; }
+.form-group label { display: block; margin-bottom: 6px; }
+
+.form-group input {
+  width: 100%;
+  padding: 12px 40px 12px 12px;
+  border-radius: 10px;
+  border: 1px solid #1f2a44;
+  background: #121a2a;
+  color: #e7eeff;
+  outline: none;
+  font-size: 14px;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 12px;
+  top: 38px;
+  cursor: pointer;
+  color: #9fb0cc;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  background: #6ea8fe;
+  color: #061120;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 14px;
+}
+
+.btn:hover { opacity: 0.9; }
+
+.social-btn {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.social-btn button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #fff;
+}
+
+.google-btn { background: #4285F4; }
+
+.create-account {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.create-account a {
+  color: #6ea8fe;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.hidden { display: none; }
+
+</style>
+</head>
+<body>
+
+<div class="login-container">
+
+  <!-- LOGIN SECTION -->
+  <div id="login-section">
+    <h2>Sign In</h2>
+
+    <div class="social-btn">
+      <button id="googleLogin" class="google-btn" type="button">
+        <img src="https://www.google.com/favicon.ico" alt="G" style="width:18px;">
+        Sign in with Google
+      </button>
+    </div>
+
+    <form id="loginForm" autocomplete="off">
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="email" required placeholder="Enter your email">
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="password" required placeholder="Enter your password">
+        <span class="eye-icon" onclick="togglePassword()">👁️</span>
+      </div>
+
+      <button type="submit" class="btn">Sign In</button>
+    </form>
+
+    <div class="create-account">
+      <p>Don't have an account?
+        <a onclick="showSignup()">Create Account</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- SIGNUP SECTION -->
+  <div id="signup-section" class="hidden">
+    <h2>Create Account</h2>
+
+    <form id="signupForm" autocomplete="off">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="signupName" required placeholder="Enter your name">
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="signupEmail" required placeholder="Enter your email">
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="signupPassword" required placeholder="Enter your password">
+        <span class="eye-icon" onclick="toggleSignupPassword()">👁️</span>
+      </div>
+
+      <button type="submit" class="btn">Sign Up</button>
+    </form>
+
+    <div class="create-account">
+      <p>Already have an account?
+        <a onclick="showLogin()">Sign In</a>
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+
+function togglePassword() {
+  const pwd = document.getElementById("password");
+  pwd.type = pwd.type === "password" ? "text" : "password";
+}
+
+function toggleSignupPassword() {
+  const pwd = document.getElementById("signupPassword");
+  pwd.type = pwd.type === "password" ? "text" : "password";
+}
+
+function showSignup() {
+  document.getElementById("login-section").classList.add("hidden");
+  document.getElementById("signup-section").classList.remove("hidden");
+}
+
+function showLogin() {
+  document.getElementById("signup-section").classList.add("hidden");
+  document.getElementById("login-section").classList.remove("hidden");
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+
+  document.getElementById("loginForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    const savedEmail = localStorage.getItem("signupEmail");
+    const savedPassword = localStorage.getItem("signupPassword");
+
+    if (email === savedEmail && password === savedPassword) {
+      alert("Login Successful!");
+      window.location.href = "../index.html";
+    } else {
+      alert("Invalid email or password!");
+    }
+  });
+
+  document.getElementById("signupForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("signupName").value;
+    const email = document.getElementById("signupEmail").value;
+    const password = document.getElementById("signupPassword").value;
+
+    if (name && email && password) {
+      localStorage.setItem("signupName", name);
+      localStorage.setItem("signupEmail", email);
+      localStorage.setItem("signupPassword", password);
+      alert("Account Created Successfully!");
+      showLogin();
+    } else {
+      alert("Please fill all fields");
+    }
+  });
+
+  document.getElementById("googleLogin").addEventListener("click", () => {
+    window.location.href = "http://0.0.0.0:5001/auth/google";
+  });
+
+});
+</script>
+
+</body>
+</html>
