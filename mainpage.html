@@ -271,12 +271,12 @@ button:hover {
 <nav class="navbar">
     <div class="logo">ResumeIQ</div>
     <div class="nav-links">
-        <a href="#">Home</a>
-        <a href="#">Dashboard</a>
-        <a href="#">How It Works</a>
+        <a href="mainpage.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="howitworks.html">How It Works</a>
     </div>
     <div class="auth-buttons">
-        <a href="/login" class="login-btn">Login</a>
+        <a href="loginpage.html" class="login-btn">Login</a>
         <a href="/signup" class="signup-btn">Sign Up</a>
     </div>
 </nav>
@@ -297,31 +297,26 @@ button:hover {
         <button type="submit">Analyze Resume</button>
     </form>
 
-    {% if score %}
     <div class="results">
-        <h2>Match Score: {{ score }}%</h2>
+        <h2>Match Score: <span id="score"></span>0%</h2>
 
         <h3>Matched Skills</h3>
-        <p>{{ matched }}</p>
+        <p id="matched">NONE</p>
 
         <h3>Missing Skills</h3>
-        <p>{{ missing }}</p>
+        <p id="missing">NONE</p>
 
         <h3>Suggestions</h3>
-        <ul>
-            {% for suggestion in suggestions %}
-                <li>{{ suggestion }}</li>
-            {% endfor %}
-        </ul>
+        <ul id="Suggestions">No Suggestions here yet</ul>
     </div>
-    {% endif %}
 </div>
 
 <div class="create-resume-section">
     <h2>Don’t Have a Resume Yet?</h2>
     <p>Create a professional, ATS-friendly resume in minutes.</p>
-    <a href="/create-resume" class="create-btn">Create Resume</a>
+    <a href="createresume.html" class="create-btn">Create Resume</a>
 </div>
 
 </body>
+
 </html>
