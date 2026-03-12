@@ -14,31 +14,22 @@ box-sizing:border-box;
 font-family:'Inter',sans-serif;
 }
 
-/* THEME VARIABLES */
+/* BLUE ATS THEME */
 
 :root{
---bg:linear-gradient(135deg,#eef2ff,#fdf4ff,#ecfeff);
---sidebar:linear-gradient(180deg,#4f46e5,#7c3aed);
---card:rgba(255,255,255,0.75);
---text:#1f2937;
---muted:#6b7280;
---accent:#7c3aed;
-}
-
-body.dark{
---bg:#0f172a;
---sidebar:linear-gradient(180deg,#020617,#0f172a);
+--bg:#0b1120;
+--sidebar:#0f172a;
 --card:#1e293b;
---text:#f1f5f9;
+--text:#e2e8f0;
 --muted:#94a3b8;
---accent:#a78bfa;
+--accent:#3b82f6;
 }
 
 body{
 display:flex;
 height:100vh;
 background:var(--bg);
-transition:0.3s;
+color:var(--text);
 }
 
 /* SIDEBAR */
@@ -56,6 +47,7 @@ flex-direction:column;
 font-size:22px;
 font-weight:600;
 margin-bottom:40px;
+color:#60a5fa;
 }
 
 .menu a{
@@ -65,11 +57,11 @@ color:#e5e7eb;
 padding:12px;
 border-radius:10px;
 margin-bottom:10px;
-transition:0.3s;
+transition:0.2s;
 }
 
 .menu a:hover{
-background:rgba(255,255,255,0.15);
+background:#3b82f6;
 }
 
 /* MAIN */
@@ -89,7 +81,7 @@ margin-bottom:30px;
 }
 
 .topbar h2{
-color:var(--text);
+color:#60a5fa;
 }
 
 .search{
@@ -97,16 +89,8 @@ padding:10px 15px;
 border-radius:10px;
 border:none;
 background:var(--card);
-color:var(--text);
-}
-
-.toggle{
-padding:8px 15px;
-border:none;
-border-radius:20px;
-background:var(--accent);
 color:white;
-cursor:pointer;
+outline:none;
 }
 
 /* CARDS */
@@ -123,7 +107,7 @@ padding:25px;
 border-radius:16px;
 background:var(--card);
 color:var(--text);
-box-shadow:0 10px 25px rgba(0,0,0,0.05);
+box-shadow:0 10px 25px rgba(0,0,0,0.25);
 transition:0.3s;
 }
 
@@ -144,7 +128,7 @@ color:var(--accent);
 /* UPLOAD */
 
 .upload{
-background:linear-gradient(135deg,#6366f1,#9333ea);
+background:linear-gradient(135deg,#2563eb,#3b82f6);
 color:white;
 padding:40px;
 border-radius:18px;
@@ -158,9 +142,14 @@ padding:12px 26px;
 border:none;
 border-radius:30px;
 background:white;
-color:#4f46e5;
+color:#2563eb;
 font-weight:600;
 cursor:pointer;
+transition:0.2s;
+}
+
+.upload button:hover{
+background:#e5e7eb;
 }
 
 /* SCORE */
@@ -175,7 +164,7 @@ color:var(--text);
 .score-value{
 font-size:50px;
 font-weight:600;
-color:var(--accent);
+color:#3b82f6;
 margin:10px 0;
 }
 
@@ -189,12 +178,12 @@ margin:10px 0;
 <div class="logo">ATS</div>
 
 <div class="menu">
-<a href="#">Dashboard</a>
-<a href="#">Applicants</a>
-<a href="#">Resume Analyzer</a>
-<a href="#">Interviews</a>
-<a href="#">Analytics</a>
-<a href="#">Settings</a>
+<a href="dashboard.html">Dashboard</a>
+<a href="applicant.html">Applicants</a>
+<a href="mainpage.html">Resume Analyzer</a>
+<a href="interview.html">Interviews</a>
+<a href="analytics.html">Analytics</a>
+<a href="setting.html">Settings</a>
 </div>
 
 </div>
@@ -206,10 +195,7 @@ margin:10px 0;
 
 <h2>Dashboard</h2>
 
-<div>
 <input class="search" placeholder="Search candidates">
-<button class="toggle" onclick="toggleTheme()">🌙 Dark</button>
-</div>
 
 </div>
 
@@ -255,15 +241,6 @@ margin:10px 0;
 </div>
 
 </div>
-
-
-<script>
-
-function toggleTheme(){
-document.body.classList.toggle("dark");
-}
-
-</script>
 
 </body>
 </html>
