@@ -4,7 +4,8 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Careersfit — Signup</title>
+
+<title>Careersfit — Auth</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -12,9 +13,9 @@
 <style>
 
 *{
-box-sizing:border-box;
 margin:0;
 padding:0;
+box-sizing:border-box;
 font-family:'Inter',sans-serif;
 }
 
@@ -27,7 +28,7 @@ background:linear-gradient(135deg,#e0ecff,#dbeafe,#eff6ff);
 color:#1e293b;
 }
 
-.signup-container{
+.container{
 background:white;
 padding:40px 30px;
 border-radius:18px;
@@ -43,7 +44,7 @@ color:#2563eb;
 }
 
 .form-group{
-margin-bottom:20px;
+margin-bottom:18px;
 position:relative;
 }
 
@@ -84,15 +85,21 @@ cursor:pointer;
 background:#1d4ed8;
 }
 
-.login-link{
+.switch{
 text-align:center;
 margin-top:16px;
+font-size:14px;
 }
 
-.login-link a{
+.switch a{
 color:#2563eb;
-text-decoration:none;
+cursor:pointer;
 font-weight:600;
+text-decoration:none;
+}
+
+.hidden{
+display:none;
 }
 
 /* DARK MODE */
@@ -104,7 +111,7 @@ background:linear-gradient(135deg,#020617,#0f172a,#1e3a8a);
 color:#e2e8f0;
 }
 
-.signup-container{
+.container{
 background:#0f172a;
 box-shadow:0 10px 30px rgba(0,0,0,0.5);
 }
@@ -123,52 +130,88 @@ color:white;
 
 <body>
 
-<div class="signup-container">
+<div class="container">
 
-<h2>Create Account</h2>
+<!-- LOGIN FORM -->
 
-<form>
+<div id="loginForm">
 
-<div class="form-group">
-<label>Full Name</label>
-<input type="text" placeholder="Enter your full name" required>
-</div>
+<h2>Sign In</h2>
 
 <div class="form-group">
 <label>Email</label>
-<input type="email" placeholder="Enter your email" required>
+<input type="email" placeholder="Enter your email">
 </div>
 
 <div class="form-group">
 <label>Password</label>
-<input type="password" id="signupPassword" placeholder="Create password" required>
-<span class="eye-icon" onclick="togglePassword()">👁</span>
+<input type="password" id="loginPassword">
+<span class="eye-icon" onclick="togglePassword('loginPassword')">👁</span>
 </div>
 
-<button class="btn">Log In</button>
+<button class="btn">Sign In</button>
 
-</form>
+<div class="switch">
+Don't have an account?
+<a onclick="showSignup()">Create Account</a>
+</div>
 
-<div class="login-link">
-<p>Already have an account?
-<a href="login.html">Sign In</a>
-</p>
+</div>
+
+<!-- SIGNUP FORM -->
+
+<div id="signupForm" class="hidden">
+
+<h2>Create Account</h2>
+
+<div class="form-group">
+<label>Full Name</label>
+<input type="text" placeholder="Enter your name">
+</div>
+
+<div class="form-group">
+<label>Email</label>
+<input type="email" placeholder="Enter your email">
+</div>
+
+<div class="form-group">
+<label>Password</label>
+<input type="password" id="signupPassword">
+<span class="eye-icon" onclick="togglePassword('signupPassword')">👁</span>
+</div>
+
+<div class="form-group">
+<label>Confirm Password</label>
+<input type="password" id="confirmPassword">
+<span class="eye-icon" onclick="togglePassword('confirmPassword')">👁</span>
+</div>
+
+<button class="btn">Create Account</button>
+
+<div class="switch">
+Already have an account?
+<a onclick="showLogin()">Sign In</a>
+</div>
+
 </div>
 
 </div>
 
 <script>
 
-function togglePassword(){
-
-let password=document.getElementById("signupPassword");
-
-if(password.type==="password"){
-password.type="text";
-}else{
-password.type="password";
+function togglePassword(id){
+let input=document.getElementById(id);
+input.type = input.type === "password" ? "text" : "password";
 }
 
+function showSignup(){
+document.getElementById("loginForm").classList.add("hidden");
+document.getElementById("signupForm").classList.remove("hidden");
+}
+
+function showLogin(){
+document.getElementById("signupForm").classList.add("hidden");
+document.getElementById("loginForm").classList.remove("hidden");
 }
 
 </script>
